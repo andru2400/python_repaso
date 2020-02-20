@@ -1,9 +1,9 @@
 
 def binary_search(numbers, number_to_find, low, high):
     if low > high:
-        return false
+        return False
 
-    mid = (low + high) / 2
+    mid = (low + high) // 2
 
     if numbers[mid] == number_to_find:
         return True
