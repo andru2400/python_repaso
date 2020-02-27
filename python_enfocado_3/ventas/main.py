@@ -75,7 +75,7 @@ if __name__ == '__main__':
         list_clients()
     elif command == 'S':
         client_name = _get_client_name()
-        fount = search_client_name(client_name)
+        fount = search_client(client_name)
 
         if fount:
             print('The client is in the client\'s list')
