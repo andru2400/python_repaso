@@ -1,21 +1,35 @@
-clients = 'pablo,ricardo,'
+import sys
+clients = ['pablo','ricardo']
 
 def create_client(cliente_name):
     global clients
 
     if cliente_name not in clients:
-        clients += cliente_name
-        _add_comma()
+        clients.append(cliente_name)
+        # clients += cliente_name
+        # _add_comma()
     else:
         print('Client already is in the client\'s list')
 
 def list_clients():
     global clients
-    print(clients)
+    # print(clients)
+    for idx, client in enumerate(clients):
+        print('{}: {}'.format(idx, client))
 
-def _add_comma():
+def update_client(client_name, update_client_name):
     global clients
-    clients += ','
+
+    if client_name in clients:
+        # clients = clients.replace(client_name+',',update_client_name+',')
+        index = clients.index(client_name)
+        clients[index] = update_client_name
+    else:
+        print('Client is not in clients list')
+
+# def _add_comma():
+#     global clients
+#     clients += ','
 
 def _print_welcome():
     print('WELCOME TO PLATZI VENTAS')
@@ -26,34 +40,40 @@ def _print_welcome():
     print('[D]elete client')
     print('[S]earch client')
 
-def update_client(client_name, update_client_name):
-    global clients
-
-    if client_name in clients:
-        clients = clients.replace(client_name+',',update_client_name+',')
-    else:
-        print('Client is not in clients list')
 
 def delete_client(client_name):
     global clients
 
     if client_name in clients:
-        clients = clients.replace(client_name+',','')
+        # clients = clients.replace(client_name+',','')
+        clients.remove(client_name)
     else:
         print('Client is not in clientss list')
 
     
 def search_client(client_name):
-    clients_list = clients.split(',')
+    # clients_list = clients.split(',')
 
-    for client in clients_list:
+    for client in clients:
         if client != client_name:
             continue
         else:
             return True
 
 def _get_client_name():
-    return input('What is the client name ?')
+    client_name = None
+
+    while not client_name:
+        client_name = input('What is the client name ?')
+
+        if client_name == 'exit':
+            client_name = None
+            break
+
+        if not client_name:
+            sys.exit()
+
+    return client_name
 
 if __name__ == '__main__': 
     _print_welcome()
